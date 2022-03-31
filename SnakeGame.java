@@ -7,6 +7,7 @@ public class SnakeGame extends Game {
     public static final int WIDTH = 15;
     public static final int HEIGHT = 15;
 
+
     @Override
     public void initialize() {
         setScreenSize(WIDTH, HEIGHT);
@@ -15,6 +16,7 @@ public class SnakeGame extends Game {
 
     private void createGame(){
         drawScene();
+        new Apple(7, 7).draw(this);
     }
 
     private void drawScene(){
@@ -25,4 +27,5 @@ public class SnakeGame extends Game {
         }
     }
 }
+
 
