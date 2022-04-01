@@ -14,17 +14,17 @@ public class SnakeGame extends Game {
         createGame();
     }
 
-    private void createGame(){
-        snake = new Snake(WIDTH/2, HEIGHT/2);
+    private void createGame() {
+        snake = new Snake(WIDTH / 2, HEIGHT / 2);
         drawScene();
         turnDelay = 300;
         setTurnTimer(turnDelay);
     }
 
-    private void drawScene(){
+    private void drawScene() {
         for (int x = 0; x < WIDTH; x++) {
             for (int y = 0; y < HEIGHT; y++) {
-                setCellColor(x, y, Color.DARKSEAGREEN);
+                setCellValueEx(x, y, Color.DARKSEAGREEN, "");
             }
         }
         snake.draw(this);
@@ -37,7 +37,3 @@ public class SnakeGame extends Game {
 
     }
 }
-
-
-
-
