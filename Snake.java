@@ -1,6 +1,7 @@
 package com.codegym.games.snake;
 
 import com.codegym.engine.cell.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,3 +70,4 @@ public class Snake extends GameObject {
         }
     }
 }
+
