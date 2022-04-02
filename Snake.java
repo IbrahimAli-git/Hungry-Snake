@@ -22,13 +22,19 @@ public class Snake extends GameObject {
     }
 
     public void setDirection(Direction direction) {
-        boolean isValidDirection = (this.direction != Direction.UP || direction != Direction.DOWN) &&
-                                   (this.direction != Direction.LEFT || direction != Direction.RIGHT) &&
-                                   (this.direction != Direction.RIGHT || direction != Direction.LEFT) &&
-                                   (this.direction != Direction.DOWN || direction != Direction.UP);
-        if (isValidDirection) {
-            this.direction = direction;
+        if ((this.direction == Direction.LEFT || this.direction == Direction.RIGHT) && snakeParts.get(0).x == snakeParts.get(1).x) {
+            return;
         }
+        if ((this.direction == Direction.UP || this.direction == Direction.DOWN) && snakeParts.get(0).y == snakeParts.get(1).y) {
+            return;
+        }
+        if ((direction == Direction.UP && this.direction == Direction.DOWN)
+                || (direction == Direction.LEFT && this.direction == Direction.RIGHT)
+                || (direction == Direction.RIGHT && this.direction == Direction.LEFT)
+                || (direction == Direction.DOWN && this.direction == Direction.UP))
+            return;
+
+        this.direction = direction;
     }
 
     public boolean checkCollision(GameObject gameObject){
@@ -74,6 +80,10 @@ public class Snake extends GameObject {
         snakeParts.remove(snakeParts.size()-1);
     }
 
+    public int getLength(){
+        return snakeParts.size();
+    }
+
     public void draw(Game game) {
         for (GameObject gameObject : snakeParts) {
             if (snakeParts.indexOf(gameObject) == 0) {
@@ -92,3 +102,4 @@ public class Snake extends GameObject {
         }
     }
 }
+
