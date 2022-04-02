@@ -2,6 +2,7 @@ package com.codegym.games.snake;
 
 import com.codegym.engine.cell.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,13 @@ public class Snake extends GameObject {
     }
 
     public void setDirection(Direction direction) {
-        this.direction = direction;
+        boolean isValidDirection = (this.direction != Direction.UP || direction != Direction.DOWN) &&
+                                   (this.direction != Direction.LEFT || direction != Direction.RIGHT) &&
+                                   (this.direction != Direction.RIGHT || direction != Direction.LEFT) &&
+                                   (this.direction != Direction.DOWN || direction != Direction.UP);
+        if (isValidDirection) {
+            this.direction = direction;
+        }
     }
 
     public void move() {
@@ -70,4 +77,3 @@ public class Snake extends GameObject {
         }
     }
 }
-
