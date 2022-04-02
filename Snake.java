@@ -31,18 +31,30 @@ public class Snake extends GameObject {
         }
     }
 
+    public boolean checkCollision(GameObject gameObject){
+        for (GameObject snakePart : snakeParts) {
+            if (gameObject.x == snakePart.x && gameObject.y == snakePart.y){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void move(Apple apple) {
         GameObject gameObject = createNewHead();
-
-        if (gameObject.x < 0 || gameObject.x >= SnakeGame.WIDTH || gameObject.y < 0 || gameObject.y >= SnakeGame.HEIGHT){
+        if (checkCollision(gameObject)){
             isAlive = false;
         } else {
-            if (apple.x == gameObject.x && apple.y == gameObject.y) {
-                apple.isAlive = false;
-                snakeParts.add(gameObject);
+            if (gameObject.x < 0 || gameObject.x >= SnakeGame.WIDTH || gameObject.y < 0 || gameObject.y >= SnakeGame.HEIGHT) {
+                isAlive = false;
             } else {
-                snakeParts.add(0, gameObject);
-                removeTail();
+                if (apple.x == gameObject.x && apple.y == gameObject.y) {
+                    apple.isAlive = false;
+                    snakeParts.add(gameObject);
+                } else {
+                    snakeParts.add(0, gameObject);
+                    removeTail();
+                }
             }
         }
     }
