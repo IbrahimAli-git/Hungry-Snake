@@ -1,8 +1,6 @@
 package com.codegym.games.snake;
 
 import com.codegym.engine.cell.*;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,14 +31,19 @@ public class Snake extends GameObject {
         }
     }
 
-    public void move() {
+    public void move(Apple apple) {
         GameObject gameObject = createNewHead();
 
         if (gameObject.x < 0 || gameObject.x >= SnakeGame.WIDTH || gameObject.y < 0 || gameObject.y >= SnakeGame.HEIGHT){
             isAlive = false;
         } else {
-            snakeParts.add(0, gameObject);
-            removeTail();
+            if (apple.x == gameObject.x && apple.y == gameObject.y) {
+                apple.isAlive = false;
+                snakeParts.add(gameObject);
+            } else {
+                snakeParts.add(0, gameObject);
+                removeTail();
+            }
         }
     }
 
